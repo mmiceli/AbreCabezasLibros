@@ -1,0 +1,14 @@
+/*Mixinns*/
+
+@mixin flex ($flex_direction, $justify_content, $align_items) {
+    display: flex;
+    flex-direction: $flex_direction;
+    justify-content: $justify_content;
+    align-items: $align_items;
+}    
+
+/*Helpers*/
+.container {
+    max-width: 1080px; 
+    margin: 0 auto;
+}
