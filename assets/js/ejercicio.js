@@ -16,21 +16,15 @@ while (a !== 5) {
         let cantidad = (prompt(`Indique la cantidad del libro seleccionado`));
         if (a === 1) {
             costoTotal = costoTotal + (costoLibro1 * cantidad)
-        } else if (a === 2) {
-            costoTotal = costoTotal + (costoLibro2 * cantidad)
-        } else if (a === 3) {
-            costoTotal = costoTotal + (costoLibro3 * cantidad)
-        } else {
-            costoTotal = costoTotal + (costoLibro4 * cantidad)
-        }
-
-        if (a === 1) {
             console.log("Acabas de agregar a la compra", cantidad, "libro/s El día que Nieztsche lloró")
         } else if (a === 2) {
+            costoTotal = costoTotal + (costoLibro2 * cantidad)
             console.log("Acabas de agregar a la compra", cantidad, "libro/s El tercer ojo")
         } else if (a === 3) {
+            costoTotal = costoTotal + (costoLibro3 * cantidad)
             console.log("Acabas de agregar a la compra", cantidad, "libro/s El sari rojo")
         } else {
+            costoTotal = costoTotal + (costoLibro4 * cantidad)
             console.log("Acabas de agregar a la compra", cantidad, "libro/s Los tres nombres del lobo")
         }
 
