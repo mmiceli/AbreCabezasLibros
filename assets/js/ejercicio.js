@@ -24,7 +24,17 @@ while (a !== 5) {
             costoTotal = costoTotal + (costoLibro4 * cantidad)
         }
 
-        console.log("Costo parcial: $", costoTotal)
+        if (a === 1) {
+            console.log("Acabas de agregar a la compra", cantidad, "libro/s El día que Nieztsche lloró")
+        } else if (a === 2) {
+            console.log("Acabas de agregar a la compra", cantidad, "libro/s El tercer ojo")
+        } else if (a === 3) {
+            console.log("Acabas de agregar a la compra", cantidad, "libro/s El sari rojo")
+        } else {
+            console.log("Acabas de agregar a la compra", cantidad, "libro/s Los tres nombres del lobo")
+        }
+
+        console.log("Costo acumulado compra: $", costoTotal)
 
         a = Number(prompt(`Agregar otro libro a la compra:
                     1-El día que Nieztsche lloró ($1000) 
@@ -44,4 +54,4 @@ while (a !== 5) {
     }
 }
 
-console.log("Costo total: $", costoTotal)
+console.log("Costo final compra: $", costoTotal)
