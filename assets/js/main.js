@@ -108,7 +108,6 @@ function buscarItem() {
 
 //Funciones relacionadas a Agregar item
 function agregarItem () {
-    console.log("LIBROS AGREGADOS AL CARRITO")
     let item= seleccionarItem();
     let nombreItemCompra=0
     let precioItemCompra= 0
@@ -121,7 +120,9 @@ function agregarItem () {
                 nombreItemCompra= libros[item-1].nombre
                 precioItemCompra= libros[item-1].precio
                 arrayItemCompra (nombreItemCompra, precioItemCompra, cantidadItemCompra)
-                console.log("Acabas de agregar a la compra ", cantidadItemCompra, "libro/s ", nombreItemCompra)
+                console.log("LIBRO AGREGADO EN CARRITO")
+                console.log(nombreItemCompra)
+                console.log("Cantidad:", cantidadItemCompra)
                 console.log("Costo parcial item: $", calcularCosto(precioItemCompra, cantidadItemCompra))
             }
         }
@@ -130,7 +131,7 @@ function agregarItem () {
         }
         item = seleccionarItem();
     }
-    console.log ("Detalle de libros en carrito")
+    console.log ("DETALLE LIBROS EN CARRITO")
     itemsCompra.forEach ((itemCompra)=>console.log (itemCompra))
 }
 
@@ -175,7 +176,7 @@ function quitarItem (){
         console.log("LIBRO ELIMINADO DE CARRITO")
         console.log (itemEncontrado.nombre)
     }
-    console.log ("Detalle de libros en carrito")
+    console.log ("DETALLE LIBROS EN CARRITO")
     itemsCompra.forEach ((itemCompra)=>console.log (itemCompra))
 }
 
