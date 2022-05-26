@@ -1,0 +1,35 @@
+/*Footer*/
+footer {
+    background: linear-gradient(0.1deg, $color__second 0,2%, rgba(194, 67, 39, 0) 93.73%);
+
+    .foot {
+        @include flex (column, center, center);
+        min-height: 10vh; 
+        padding: 0 2rem;
+
+        .otraInfo {
+            @include flex (row, center, center);
+            gap: 2rem;
+            flex-basis: 30%;
+
+            &__item {
+                flex-basis: 20%; 
+
+                &__link {
+                    padding: 1rem;
+                    font-size: 2.5em;
+                    color: $color__second !important;
+                    transform: all .3s ease-in-out !important; 
+
+                    &:hover {
+                        font-size: 3.2em;
+                    }
+                }
+            }
+        }
+
+        &__right {
+            font-size: 1.3em;
+        }
+    }
+}

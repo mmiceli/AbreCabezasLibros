@@ -180,3 +180,15 @@ function quitarItem (){
     itemsCompra.forEach ((itemCompra)=>console.log (itemCompra))
 }
 
+function totalItem () {
+
+}
+
+//Cantidad de itemCompra en carro
+const cantItemAregado= document.getElementById ("cantItem")
+cantItemAregado.innerText= itemsCompra.length
+
+
+
+
+

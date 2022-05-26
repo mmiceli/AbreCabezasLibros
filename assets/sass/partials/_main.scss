@@ -1,0 +1,23 @@
+/*Main general*/
+main {
+    background-image:url();
+    background-position: center;  
+    background-repeat: no-repeat;
+
+    .principal {
+        @include flex (column, space-between, space-between);
+        text-align: center;
+        padding: 1rem 2rem;
+
+        &__titule {
+            color: $color__third;
+            padding: 1rem;
+            margin: 0 2rem; 
+        }
+        &__parrafo {
+            color: $color__cuarter;
+            font-size: 2em;
+            padding: 1rem;
+        }
+    }
+}

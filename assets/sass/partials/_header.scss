@@ -1,0 +1,31 @@
+/*Header and Navbar*/
+header {
+    border-bottom: solid 0.3rem #f0e6e6;
+    min-height: 10vh; 
+    
+    .navbar {
+        @include flex (row, space-between, center);
+        flex-wrap: wrap;
+
+        &__logo {
+            @include flex (row, space-between, center);
+            font-size: 1.5em;
+            font-weight: 600;
+
+            &__img {
+                margin: 1.2rem;
+                font-size: 2.2em;
+            }
+        }
+
+        &__carrito {
+            @include flex (column, space-between, center);
+            font-size: 1.5em;
+
+            &__img {
+                font-size: 2.2em;
+            }
+        }
+    }
+}
+

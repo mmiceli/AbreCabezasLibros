@@ -1,35 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://kit.fontawesome.com/670adeff96.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/style.css">
-    <script defer src="js/main.js"></script> <!--Defer carga el script despues de cargar el html-->
+    <script defer src="js/main.js"></script>
+    <!--Defer carga el script despues de cargar el html-->
 </head>
+
 <body>
-    <!--Prueba-->
-    <div class="general">
-        <h3 class="general__titule">Libros disponibles</h3>
-        <ul class="general__subdiv1">
-            <li class="general__subdiv1__item2">
-                <img class="general__subdiv1__item2__img" src="assets/image/books/dia_nietzsche_lloro.jpg" alt="">
-                <p>$1000</p>
-            </li>
-            <li class="general__subdiv1__item2">
-                <img class="general__subdiv1__item2__img" src="assets/image/books/tercer_ojo.jpg" alt="">
-                <p>$2000</p>
-            </li>
-            <li class="general__subdiv1__item2">
-                <img class="general__subdiv1__item2__img" src="assets/image/books/sari_rojo.jpg" alt="">
-                <p>$500</p>
-            </li>
-            <li class="general__subdiv1__item2">
-                <img class="general__subdiv1__item2__img" src="assets/image/books/tres_nombres_lobo.jpg" alt="">
-                <p>$3000</p>
-            </li>
-        </ul>
-    </div>  
+    <header>
+        <section class="navbar container">
+            <div class="navbar__logo">
+                <picture class="navbar__logo__img">
+                    <i class="fa-solid fa-book"></i>
+                </picture> 
+                <p>Abre Cabezas Libros</p>
+            </div>
+            <div class="navbar__carrito">
+                <p id="cantItem">0</p>
+                <picture class="navbar__carrito__img">
+                    <i class="fa-solid fa-cart-arrow-down"></i>
+                </picture> 
+            </div>
+  
+        </section>
+    </header>
+    <main>
+        <section class="principal container">
+            <h2 class="principal__titule">Libros destacados</h2>
+            <p class="principal__parrafo">“Uno no es lo que es por lo que escribe, sino por lo que ha leído”. Jorge Luis Borges.</p>
+            <div id="dev" class="general">
+                <h3 class="general__titule">Novelas</h3>
+                <ul class="general__subdiv1">
+                    <li class="general__subdiv1__item2">
+                        <img class="general__subdiv1__item2__img" src="assets/image/books/dia_nietzsche_lloro.jpg" alt="">
+                        <p>$1000</p>
+                    </li>
+                    <li class="general__subdiv1__item2">
+                        <img class="general__subdiv1__item2__img" src="assets/image/books/tercer_ojo.jpg" alt="">
+                        <p>$2000</p>
+                    </li>
+                    <li class="general__subdiv1__item2">
+                        <img class="general__subdiv1__item2__img" src="assets/image/books/sari_rojo.jpg" alt="">
+                        <p>$500</p>
+                    </li>
+                    <li class="general__subdiv1__item2">
+                        <img class="general__subdiv1__item2__img" src="assets/image/books/tres_nombres_lobo.jpg" alt="">
+                        <p>$3000</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <section class="foot container">
+            <ul class="otraInfo">
+                <li class="otraInfo__item">
+                    <a class="otraInfo__item__link" href=""><i class="fa-brands fa-twitter"></i></a>
+                </li>
+                <li class="otraInfo__item">
+                    <a class="otraInfo__item__link" href=""><i
+                            class="fa-brands fa-facebook-square"></i></a>
+                </li>
+                <li class="otraInfo__item">
+                    <a class="otraInfo__item__link" href=""><i class="fa-brands fa-instagram-square"></i></a>
+                </li>
+            </ul>
+            <div>
+                <p class="foot__right">All Rights Reserved &copy;Soledad Developer 2022&copy;</p>
+            </div>
+        </section>
+    </footer>
 </body>
+
 </html>

@@ -10,16 +10,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mmiceli/EntregaUno.git"
+    "url": "git+https://mmiceli.github.io/AbreCabezasLibros.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mmiceli/EntregaUno/issues"
+    "url": "https://mmiceli.github.io/AbreCabezasLibros/issues"
   },
-  "homepage": "https://github.com/mmiceli/EntregaUno#readme",
+  "homepage": "https://mmiceli.github.io/AbreCabezasLibros#readme",
   "devDependencies": {
-    "node-sass": "^7.0.1"
+    "node-sass": "^7.0.1",
+    "nodemon": "^2.0.16"
   }
 }

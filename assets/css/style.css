@@ -1,5 +1,6 @@
 /*Variables*/
 /*Variables*/
+/*Map*/
 /*Normalize*/
 /*Import font*/
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,600;0,700;1,100;1,200;1,300;1,600;1,800&display=swap");
@@ -51,6 +52,86 @@ ol, ul {
 .container {
   max-width: 1080px;
   margin: 0 auto; }
+
+/*Partial*/
+/*Header and Navbar*/
+header {
+  border-bottom: solid 0.3rem #f0e6e6;
+  min-height: 10vh; }
+  header .navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; }
+    header .navbar__logo {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.5em;
+      font-weight: 600; }
+      header .navbar__logo__img {
+        margin: 1.2rem;
+        font-size: 2.2em; }
+    header .navbar__carrito {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.5em; }
+      header .navbar__carrito__img {
+        font-size: 2.2em; }
+
+/*Main general*/
+main {
+  background-image: url();
+  background-position: center;
+  background-repeat: no-repeat; }
+  main .principal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-between;
+    text-align: center;
+    padding: 1rem 2rem; }
+    main .principal__titule {
+      color: #942e2e;
+      padding: 1rem;
+      margin: 0 2rem; }
+    main .principal__parrafo {
+      color: #000000;
+      font-size: 2em;
+      padding: 1rem; }
+
+/*Footer*/
+footer {
+  background: linear-gradient(0.1deg, #f30c0c 0, 2%, rgba(194, 67, 39, 0) 93.73%); }
+  footer .foot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 10vh;
+    padding: 0 2rem; }
+    footer .foot .otraInfo {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-basis: 30%; }
+      footer .foot .otraInfo__item {
+        flex-basis: 20%; }
+        footer .foot .otraInfo__item__link {
+          padding: 1rem;
+          font-size: 2.5em;
+          color: #f30c0c !important;
+          transform: all .3s ease-in-out !important; }
+          footer .foot .otraInfo__item__link:hover {
+            font-size: 3.2em; }
+    footer .foot__right {
+      font-size: 1.3em; }
 
 /*views*/
 /*Import font*/

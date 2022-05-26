@@ -7,6 +7,11 @@
 /*Mixins*/
 @import './misc/mixins';
 
+/*Partial*/
+@import './partials/header';
+@import './partials/main';
+@import './partials/footer';
+
 
 /*views*/
 @import './views/index.scss';
