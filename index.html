@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tienda online</title>
     <script src="https://kit.fontawesome.com/670adeff96.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/style.css">
+    <script defer src="js/vistas/vistas.js"></script>
+    <script defer src="js/clases/clases.js"></script>
     <script defer src="js/main.js"></script>
     <!--Defer carga el script despues de cargar el html-->
 </head>
@@ -17,43 +19,54 @@
         <section class="navbar container">
             <div class="navbar__logo">
                 <picture class="navbar__logo__img">
-                    <i class="fa-solid fa-book"></i>
+                    <a href="index.html"><i class="fa-solid fa-book"></i></a>
                 </picture> 
                 <p>Abre Cabezas Libros</p>
             </div>
             <div class="navbar__carrito">
-                <p id="cantItem">0</p>
+                <p class="cantItem">0</p>
                 <picture class="navbar__carrito__img">
-                    <i class="fa-solid fa-cart-arrow-down"></i>
+                    <a href="assets/pages/carrito.html"><i class="fa-solid fa-cart-arrow-down"></i></a>          
                 </picture> 
             </div>
-  
         </section>
     </header>
     <main>
         <section class="principal container">
             <h2 class="principal__titule">Libros destacados</h2>
             <p class="principal__parrafo">“Uno no es lo que es por lo que escribe, sino por lo que ha leído”. Jorge Luis Borges.</p>
-            <div id="dev" class="general">
+            <div class="general">
                 <h3 class="general__titule">Novelas</h3>
                 <ul class="general__subdiv1">
                     <li class="general__subdiv1__item2">
                         <img class="general__subdiv1__item2__img" src="assets/image/books/dia_nietzsche_lloro.jpg" alt="">
                         <p>$1000</p>
+                        <button id="boton1">Agregar</button>
                     </li>
                     <li class="general__subdiv1__item2">
                         <img class="general__subdiv1__item2__img" src="assets/image/books/tercer_ojo.jpg" alt="">
                         <p>$2000</p>
+                        <button id="boton2">Agregar</button>
                     </li>
                     <li class="general__subdiv1__item2">
                         <img class="general__subdiv1__item2__img" src="assets/image/books/sari_rojo.jpg" alt="">
                         <p>$500</p>
+                        <button id="boton3">Agregar</button>
                     </li>
                     <li class="general__subdiv1__item2">
                         <img class="general__subdiv1__item2__img" src="assets/image/books/tres_nombres_lobo.jpg" alt="">
                         <p>$3000</p>
+                        <button id="boton4">Agregar</button>
                     </li>
                 </ul>
+                <br>
+                <br>
+            </div>
+            <div class="general">
+                <h3 class="general__titule">Tu carrito</h3>
+                <ul class="general__subdiv1">
+                <div id="itemsCarrito">
+                </div>
             </div>
         </section>
     </main>
