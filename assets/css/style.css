@@ -173,14 +173,38 @@ footer {
     align-items: stretch;
     padding-bottom: 2rem;
     color: #000000; }
-    .general__subdiv1__item2 {
+    .general__subdiv1__item1 {
       flex-basis: 15%;
       margin: 1rem;
       transition: all .3s ease-in-out; }
-      .general__subdiv1__item2:hover {
+      .general__subdiv1__item1:hover {
         transform: scale(1.2, 1.2);
         padding: 0.3rem;
         background-color: #ffffff; }
-      .general__subdiv1__item2__img {
+      .general__subdiv1__item1__img {
         width: 100%;
         height: 100%; }
+  .general__subdiv2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    width: 70%;
+    padding-bottom: 2rem;
+    color: #000000; }
+    .general__subdiv2__item2 {
+      display: flex;
+      flex-direction: row;
+      justify-content: stretch;
+      align-items: stretch;
+      font-size: 1.5em;
+      padding: 0.5rem; }
+      .general__subdiv2__item2__nombre {
+        flex-basis: 50%;
+        text-align: left; }
+      .general__subdiv2__item2__cantidad {
+        flex-basis: 15%; }
+      .general__subdiv2__item2__costo {
+        flex-basis: 15%; }
+      .general__subdiv2__item2__total {
+        padding-top: 2rem; }

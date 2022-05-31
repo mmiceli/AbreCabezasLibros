@@ -12,7 +12,8 @@ const libros = [{
         precio: 1000,
         cantidad: 3,
         genero: "Novela",
-        activoMenu: true
+        activoMenu: true,
+        urlImagen:"assets/image/books/dia_nietzsche_lloro.jpg"
     },
     {
         id: 2,
@@ -20,7 +21,8 @@ const libros = [{
         precio: 2000,
         cantidad: 0,
         genero: "Novela",
-        activoMenu: true
+        activoMenu: true,
+        urlImagen:"assets/image/books/sari_rojo.jpg"
     },
     {
         id: 3,
@@ -28,7 +30,8 @@ const libros = [{
         precio: 500,
         cantidad: 20,
         genero: "Novela",
-        activoMenu: false
+        activoMenu: false,
+        urlImagen:"assets/image/books/tercer_ojo.jpg"
     },
     {
         id: 4,
@@ -36,15 +39,17 @@ const libros = [{
         precio: 3000,
         cantidad: 15,
         genero: "Novela",
-        activoMenu: true
+        activoMenu: true,
+        urlImagen:"assets/image/books/tres_nombres_lobo.jpg"
     },
-    {
+    /*{
         id: 5,
         nombre: "bla bla bla",
         precio: 3000,
         cantidad: 15,
         genero: "Biografia",
-        activoMenu: true
+        activoMenu: true,
+        urlImagen:"assets/image/books/tres_nombres_lobo.jpg"
     },
     {
         id: 6,
@@ -52,8 +57,9 @@ const libros = [{
         precio: 3000,
         cantidad: 15,
         genero: "Novela",
-        activoMenu: false
-    } 
+        activoMenu: false,
+        urlImagen:"assets/image/books/tres_nombres_lobo.jpg"
+    }*/
 ]
 
 
@@ -72,76 +78,12 @@ function arrayItemCompra (nombre, precio, cantidad, costo)
     itemsCompra.push(itemCompra); //agrega el item ingresado al array
 }
 
-//mostrarNovelas(libros)
-//menuPrincipal ()
-agregarItem ()
+mostrarItemsDestacados ()
 
 
-//Funciones menu principal (no se usa)
-function opcionMenu() {
-    return Number(prompt(`Seleccione una opcion:
-                1. Buscar libro
-                2. Agregar libro el carrito
-                3. Quitar libro del carrito
-                4. Salir`));
-}
-
-function menuPrincipal() {
-    let opcion = opcionMenu();
-    while (opcion !== 4) {
-        switch (opcion) {
-            case 1: {
-                buscarItem();
-                break;
-            }
-            case 2: {
-                agregarItem ();
-                break;
-            }
-            case 3: {
-                quitarItem();
-                break;
-            }
-            default: {
-                alert("Opcion invalida. Debe seleccionar 1, 2, 3 o 4");
-                break;
-            }
-        }
-        opcion = opcionMenu()
-    }
-    console.log("Gracias por su interes")
-}
-
-//Funcion relacionada a Buscar item
-
-function buscarItem() {
-    let busqueda = prompt("Ingrese el nombre del libro a buscar")
-    let resulBusqueda = libros.filter((parametro) => parametro.nombre.toLowerCase().includes(busqueda))
-    console.log("RESULTADO BUSQUEDA")
-    resulBusqueda.forEach ((resultado)=>console.log (resultado.nombre))
-}
 
 
-//Funciones relacionadas a Quitar item
-function quitarItem (){
-    let id=Number(prompt("Ingrese el id del libro que quiere quitar del carrito"))
-    let itemEncontrado= itemsCompra.find ((itemCompra)=>itemCompra.id===id)
-    if (!itemEncontrado) {
-        alert ("Libro no encontrado")
-    }
-    else {
-        let index= itemsCompra.indexOf (itemEncontrado)
-        itemsCompra.splice (index,1)
-        console.log("LIBRO ELIMINADO DE CARRITO")
-        console.log (itemEncontrado.nombre)
-    }
-    console.log ("DETALLE LIBROS EN CARRITO")
-    itemsCompra.forEach ((itemCompra)=>console.log (itemCompra))
-}
 
-function totalItem () {
-
-}
 
 
 
