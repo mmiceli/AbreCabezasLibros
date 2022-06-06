@@ -1,0 +1,3 @@
+//LLAMADA
+mostrarItemsDestacados ()
+cantItemCarro ()

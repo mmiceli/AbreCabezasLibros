@@ -26,6 +26,7 @@
 
     &__subdiv1 {
         @include flex (row, center, stretch);
+        flex-wrap: wrap;
         padding-bottom: 2rem;
         color: $color__cuarter; 
         
@@ -49,17 +50,25 @@
 
     &__subdiv2 {
         @include flex (column, center, stretch);
+        flex-wrap: wrap;
         width: 70%;
         padding-bottom: 2rem;
         color: $color__cuarter; 
 
         &__item2 {
-            @include flex (row, stretch, stretch);
+            @include flex (row, stretch, center);
             font-size: 1.5em;
             padding: 0.5rem;
 
+            &__img {
+                flex-basis: 5%;
+                max-width: 6%;
+                max-height: 6%;
+                margin: 1rem;
+            }
+            
             &__nombre {
-                flex-basis: 50%;
+                flex-basis: 40%;
                 text-align: left;
             }
             &__cantidad {
@@ -68,8 +77,11 @@
             &__costo {
                 flex-basis: 15%;
             }
+
+
             &__total {
                 padding-top: 2rem;
+                margin: 1rem;
             }
         }
     }
