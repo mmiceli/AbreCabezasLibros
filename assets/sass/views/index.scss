@@ -73,8 +73,15 @@
             }
             &__cantidad {
                 flex-basis: 15%;
+                @include flex (row, center, center);
+
+                &__cantidad2 {
+                    margin-right: 1rem;
+                    margin-left: 1rem;
+                }
+                
             }
-            &__costo {
+            &__costoPrecio {
                 flex-basis: 15%;
             }
 

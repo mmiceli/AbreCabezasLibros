@@ -1,3 +1,0 @@
-//LLAMADA 
-cantItemCarro ()
-mostrarItemsCarrito ()

@@ -31,10 +31,8 @@ const data = [{
     nombre: "Los tres nombres del lobo",
     precio: 3000,
     cantidad: 15,
-    genero: "Novela",
+    genero: "",
     imagen:"https://mmiceli.github.io/AbreCabezasLibros/assets/image/books/tres_nombres_lobo.jpg",
     activoMenu: true,
 }
 ]
-
-console.log (data)

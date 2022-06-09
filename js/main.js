@@ -1,256 +1,338 @@
 // APP PARA COMPRAR LIBROS
 // Se podra: 
-// Buscar un libro
-// Agregar libros al carrito y su cantidad.
-// Quitar libros del carrito.
+// Agregar items al carrito 
+// Aumentar o disminuir la cantidad de un item hasta 1 en el carrito
+// Buscar items
+// Quitar items del carrito.
 
 //FUNCIONES Y ARRAY PARA GUARDAR INFORMACION
 //Funciones y array destinados a guardar los libros a mostrar en index
-const libros = [] 
-cargarLibros ()
-function cargarLibros () {
-    data.forEach ((dato)=>{
-        const libro = new ItemDisponible (dato.id, dato.nombre, dato.precio, dato.cantidad, dato.genero, dato.imagen)
-        libros.push (libro)
+const libros = []
+
+cargarLibros()
+
+function cargarLibros() {
+    data.forEach((dato) => {
+        const libro = new ItemDisponible(dato.id, dato.nombre, dato.precio, dato.cantidad, dato.genero, dato.imagen)
+        libros.push(libro)
     })
 }
 
-//Funciones y array destinados a guardar los items de la compra
-let itemsCompra = []
+//Funciones y array destinados a guardar los items de la compra. 
+let itemsCompra = JSON.parse(localStorage.getItem("Item__Compra")) ? //Uso de operador Ternario
+    JSON.parse(localStorage.getItem("Item__Compra")) : [];
 
-if(localStorage.getItem("Item__Compra"))
-{
-    itemsCompra = JSON.parse(localStorage.getItem("Item__Compra"));
-}
-else
-{
-    itemsCompra = []
-}
-
-
-function arrayItemCompra (nombre, precio, cantidad, costo, urlImagen)
-{      
-    let id=1;
-    if (itemsCompra.length>0)
-    {
-       id=itemsCompra[itemsCompra.length-1].id+1;
+function arrayItemCompra(nombre, precio, cantidad, imagen) {
+    let id = 1;
+    if (itemsCompra.length > 0) {
+        id = itemsCompra[itemsCompra.length - 1].id + 1;
     }
-    let itemCompra = new ItemCompra (id, nombre, precio, cantidad, costo, urlImagen);
+    let itemCompra = new ItemCompra(id, nombre, precio, cantidad, imagen);
     itemsCompra.push(itemCompra); //agrega el item ingresado al array
-    localStorage.setItem ('Item__Compra', JSON.stringify(itemsCompra)) //agrega el array en el local storage
+    localStorage.setItem('Item__Compra', JSON.stringify(itemsCompra)) //agrega el array en el local storage
 }
 
 
 //FUNCIONES PARA MOSTRAR INFORMACION EN PAGINAS
 //Funcion para mostrar libros en index
-function mostrarItemsDestacados ()
-{
-    const nodoDivCarrito= document.getElementById ("itemsDestacados")
-    let nodoUL= document.querySelector ("#listaItemsDestacados")
-    if (!nodoUL) {
-        nodoUL= document.createElement ("ul")
-        nodoUL.setAttribute ("id", "listaItemsDestacados")
-        nodoUL.className="general__subdiv1"
+function mostrarItemsDestacados() {
+    let nodoDivCarrito = document.getElementById("items")
+
+    if (!nodoDivCarrito) {
+        nodoDivCarrito = document.createElement("div")
+        nodoDivCarrito.setAttribute("id", "items")
+        nodoDivCarrito.className = "general"
     }
-    nodoUL.innerHTML=""
+    nodoDivCarrito.innerHTML = ""
+
+    const nodoH3 = document.createElement("h3")
+    nodoH3.className = "general__titule"
+    nodoH3.innerHTML = "Libros destacados"
+    nodoDivCarrito.appendChild(nodoH3)
+
+
+    const nodoUL = document.createElement("ul")
+    nodoUL.className = "general__subdiv1"
 
     libros.forEach((item) => {
-        const nodoLI= document.createElement ("li") //la variable nodoLI solo existe dentro del for
-        nodoLI.className="general__subdiv1__item1"
+        const nodoLI = document.createElement("li")
+        nodoLI.className = "general__subdiv1__item1"
 
-        const nodoImagen= document.createElement ("img")
-        nodoImagen.className="general__subdiv1__item1__img"
-        nodoImagen.src=`${item.imagen}`
-        nodoLI.appendChild (nodoImagen)
+        const nodoImagen = document.createElement("img")
+        nodoImagen.className = "general__subdiv1__item1__img"
+        nodoImagen.src = `${item.imagen}`
+        nodoLI.appendChild(nodoImagen)
 
-        const nodoPrecio= document.createElement ("p")
-        nodoPrecio.className=""
-        nodoPrecio.innerHTML= `$${item.precio}`
-        nodoLI.appendChild (nodoPrecio)
+        const nodoPrecio = document.createElement("p")
+        nodoPrecio.className = ""
+        nodoPrecio.innerHTML = `$${item.precio}`
+        nodoLI.appendChild(nodoPrecio)
 
-        const nodoBoton= document.createElement ("button")
-        nodoBoton.className=""
-        nodoBoton.id=`${item.id}`
+        const nodoBoton = document.createElement("button")
+        nodoBoton.className = ""
+        nodoBoton.id = `${item.id}`
         nodoBoton.dataset.item = `${item.id}`
         nodoBoton.addEventListener('click', agregarItem)
-        nodoBoton.innerHTML= `Agregar`
-        nodoLI.appendChild (nodoBoton)
- 
-        nodoUL.appendChild (nodoLI)
+        nodoBoton.innerHTML = `Agregar`
+        nodoLI.appendChild(nodoBoton)
+
+        nodoUL.appendChild(nodoLI)
     });
 
-    nodoDivCarrito.appendChild (nodoUL)
+    nodoDivCarrito.appendChild(nodoUL)
 
-    const nodoEspacio= document.createElement ("br")
-    nodoDivCarrito.appendChild (nodoEspacio)
+    const nodoEspacio = document.createElement("br")
+    nodoDivCarrito.appendChild(nodoEspacio)
 }
 
 //Funcion para mostrar la seccion de items del carrito. 
-function mostrarItemsCarrito ()
-{
-    const nodoDivCarrito2= document.getElementById ("itemsCarrito")
-    let nodoUL= document.querySelector ("#listaItemsCarrito")
-    if (!nodoUL) {
-        nodoUL= document.createElement ("ul")
-        nodoUL.setAttribute ("id", "listaItemsCarrito")
-        nodoUL.className="general__subdiv2"
+function mostrarItemsCarrito() {
+    let nodoDivCarrito = document.getElementById("items")
+
+    if (!nodoDivCarrito) {
+        nodoDivCarrito = document.createElement("div")
+        nodoDivCarrito.setAttribute("id", "items")
+        nodoDivCarrito.className = "general"
     }
-    nodoUL.innerHTML=""
+    nodoDivCarrito.innerHTML = ""
+
+    const nodoH3 = document.createElement("h3")
+    nodoH3.className = "general__titule"
+    nodoH3.innerHTML = "Tu carrito"
+    nodoDivCarrito.appendChild(nodoH3)
+
+    const nodoUL = document.createElement("ul")
+    nodoUL.className = "general__subdiv2"
 
     itemsCompra.forEach((item) => {
-        const nodoLI= document.createElement ("li") 
-        nodoLI.className="general__subdiv2__item2"
+        const nodoLI = document.createElement("li")
+        nodoLI.className = "general__subdiv2__item2"
 
-        const nodoImagen= document.createElement ("img")
-        nodoImagen.className="general__subdiv2__item2__img"
-        nodoImagen.src=`${item.urlImagen}`
-        nodoLI.appendChild (nodoImagen)
+        const nodoImagen = document.createElement("img")
+        nodoImagen.className = "general__subdiv2__item2__img"
+        nodoImagen.src = `${item.imagen}`
+        nodoLI.appendChild(nodoImagen)
 
-        const nodoNombre= document.createElement ("p")
-        nodoNombre.className="general__subdiv2__item2__nombre"
-        nodoNombre.innerHTML= `${item.nombre}`
-        nodoLI.appendChild (nodoNombre)
+        const nodoNombre = document.createElement("p")
+        nodoNombre.className = "general__subdiv2__item2__nombre"
+        nodoNombre.innerHTML = `${item.nombre}`
+        nodoLI.appendChild(nodoNombre)
 
-        const nodoCantidad= document.createElement ("p")
-        nodoCantidad.className="general__subdiv2__item2__cantidad"
-        nodoCantidad.innerHTML= `${item.cantidad} libros`
-        nodoLI.appendChild (nodoCantidad)
+        const nodoSpan = document.createElement("span")
+        nodoSpan.className = "general__subdiv2__item2__cantidad"
 
-        const nodoCosto= document.createElement ("p")
-        nodoCosto.className="general__subdiv2__item2__costo"
-        nodoCosto.innerHTML= `$${item.costo}`
-        nodoLI.appendChild (nodoCosto)
+        const nodoBoton1 = document.createElement("button")
+        nodoBoton1.id = `${item.id}`
+        nodoBoton1.dataset.item = `${item.id}`
+        nodoBoton1.addEventListener('click', restarCantidadItem)
+        nodoBoton1.innerHTML = `-`
+        nodoSpan.appendChild(nodoBoton1)
 
-        const nodoBoton= document.createElement ("button")
-        nodoBoton.className="general__subdiv2__item2__boton"
-        nodoBoton.id=`${item.id}`
+        const nodoCantidad = document.createElement("p")
+        nodoCantidad.className = "general__subdiv2__item2__cantidad__cantidad2"
+        nodoCantidad.innerHTML = `${item.cantidad}`
+        nodoSpan.appendChild(nodoCantidad)
+
+        const nodoBoton2 = document.createElement("button")
+        nodoBoton2.className = "general__subdiv2__item2__boton"
+        nodoBoton2.id = `${item.id}`
+        nodoBoton2.dataset.item = `${item.id}`
+        nodoBoton2.addEventListener('click', sumarCantidadItem)
+        nodoBoton2.innerHTML = `+`
+        nodoSpan.appendChild(nodoBoton2)
+
+        nodoLI.appendChild(nodoSpan)
+
+        const nodoCosto = document.createElement("p")
+        nodoCosto.className = "general__subdiv2__item2__costoPrecio"
+        nodoCosto.innerHTML = `$${calcularCostoItem(item.precio, item.cantidad)}`
+        nodoLI.appendChild(nodoCosto)
+
+        const nodoBoton = document.createElement("button")
+        nodoBoton.className = "general__subdiv2__item2__boton"
+        nodoBoton.id = `${item.id}`
         nodoBoton.dataset.item = `${item.id}`
         nodoBoton.addEventListener('click', quitarItem)
-        nodoBoton.innerHTML= `Eliminar`
-        nodoLI.appendChild (nodoBoton)
- 
-        nodoUL.appendChild (nodoLI)
+        nodoBoton.innerHTML = `Eliminar`
+        nodoLI.appendChild(nodoBoton)
+
+        nodoUL.appendChild(nodoLI)
     });
-    const nodoLI= document.createElement ("li")
-    nodoLI.className="general__subdiv2__item2"
+    const nodoLI = document.createElement("li")
+    nodoLI.className = "general__subdiv2__item2"
 
-    const nodoTotal= document.createElement ("p")
-    nodoTotal.className="general__subdiv2__item2__total"
-    nodoTotal.innerHTML= `TOTAL $${calcularCostoTotal (itemsCompra)}`
-    nodoLI.appendChild (nodoTotal)
+    const nodoTotal = document.createElement("p")
+    nodoTotal.className = "general__subdiv2__item2__total"
+    nodoTotal.innerHTML = `TOTAL $${calcularCostoTotal (itemsCompra)}`
+    nodoLI.appendChild(nodoTotal)
 
-    nodoUL.appendChild (nodoLI)
+    nodoUL.appendChild(nodoLI)
 
-    nodoDivCarrito2.appendChild (nodoUL)
+    nodoDivCarrito.appendChild(nodoUL)
+}
+
+//Función para mostrar el costo de cada items en carrito. Es llamada por la funcion mostrarItemsCarrito
+function calcularCostoItem(precio, cantidad) {
+    return precio * cantidad
 }
 
 //Función para mostrar el costo total de los items en carrito. Es llamada por la funcion mostrarItemsCarrito
-function calcularCostoTotal (arrayItemCompra) {
-    let array= arrayItemCompra
-    let total=0
-    for (let i=0; i<array.length; i++) 
-    {
-        total=total+(array[i].precio*array[i].cantidad)
+function calcularCostoTotal(arrayItemCompra) {
+    let array = arrayItemCompra
+    let total = 0
+    for (let i = 0; i < array.length; i++) {
+        total = total + (array[i].precio * array[i].cantidad)
     }
     return total
 }
 
 //Función para mostrar la cantidad de items de la compra sobre el carrito en el header
-function cantItemCarro () {
-    const cantItemAregado= document.getElementsByClassName ("cantItem")
-    let index=0
+function cantItemCarro() {
+    const cantItemAregado = document.getElementsByClassName("cantItem")
+    let index = 0
     for (let cant of cantItemAregado) {
         cant.innerText = itemsCompra.length
         index++
     }
 }
 
+//Funciones para mostrar los resultados de la Busqueda. 
+function mostrarBusqueda() {
+    let itemsEncontrado = JSON.parse(localStorage.getItem("Item__Encontrado")) ? //Uso de operador Ternario
+        JSON.parse(localStorage.getItem("Item__Encontrado")) : [];
 
+    itemsEncontrado.length > 0 && mostrarItemsEncontrados(itemsEncontrado) //Uso de operador And
+    itemsEncontrado.length === 0 && mostrarNoEncontrado()
+}
+
+function mostrarItemsEncontrados(itemsEncontrado) {
+    let nodoDivCarrito = document.getElementById("items")
+
+    if (!nodoDivCarrito) {
+        nodoDivCarrito = document.createElement("div")
+        nodoDivCarrito.setAttribute("id", "items")
+        nodoDivCarrito.className = "general"
+    }
+    nodoDivCarrito.innerHTML = ""
+
+    const nodoH3 = document.createElement("h3")
+    nodoH3.className = "general__titule"
+    nodoH3.innerHTML = "Resultado de busqueda"
+    nodoDivCarrito.appendChild(nodoH3)
+
+    const nodoUL = document.createElement("ul")
+    nodoUL.className = "general__subdiv2"
+
+    itemsEncontrado.forEach((item) => {
+        const nodoLI = document.createElement("li")
+        nodoLI.className = "general__subdiv2__item2"
+
+        const nodoImagen = document.createElement("img")
+        nodoImagen.className = "general__subdiv2__item2__img"
+        nodoImagen.src = `${item.imagen}`
+        nodoLI.appendChild(nodoImagen)
+
+        const nodoNombre = document.createElement("p")
+        nodoNombre.className = "general__subdiv2__item2__nombre"
+        nodoNombre.innerHTML = `${item.nombre}`
+        nodoLI.appendChild(nodoNombre)
+
+        const nodoPrecio = document.createElement("p")
+        nodoPrecio.className = "general__subdiv2__item2__costoPrecio"
+        nodoPrecio.innerHTML = `$${item.precio}`
+        nodoLI.appendChild(nodoPrecio)
+
+        const nodoGenero = document.createElement("p")
+        nodoGenero.className = "general__subdiv2__item2__cantidad"
+        nodoGenero.innerHTML = `${item.genero || "Genero no cargado"}` //Acceso condicional
+        nodoLI.appendChild(nodoGenero)
+
+        const nodoBoton = document.createElement("button")
+        nodoBoton.className = "general__subdiv2__item2__boton"
+        nodoBoton.id = `${item.id}`
+        nodoBoton.dataset.item = `${item.id}`
+        nodoBoton.addEventListener('click', agregarItem)
+        nodoBoton.innerHTML = `Agregar`
+        nodoLI.appendChild(nodoBoton)
+
+        nodoUL.appendChild(nodoLI)
+    });
+    nodoDivCarrito.appendChild(nodoUL)
+}
+
+function mostrarNoEncontrado() {
+    let nodoDivCarrito = document.getElementById("items")
+
+    if (!nodoDivCarrito) {
+        nodoDivCarrito = document.createElement("div")
+        nodoDivCarrito.setAttribute("id", "items")
+        nodoDivCarrito.className = "general"
+    }
+    nodoDivCarrito.innerHTML = ""
+
+    const nodoH3 = document.createElement("h3")
+    nodoH3.className = "general__titule"
+    nodoH3.innerHTML = "No hay coincidencias con la busqueda"
+    nodoDivCarrito.appendChild(nodoH3)
+}
 
 //FUNCIONES DISPARADAS POR EVENTOS O DE SOPORTE A ESTAS
-//Funcion para agregar item en el array de compras
-function agregarItem (evento){
+//Funcion para agregar item en el carrito
+function agregarItem(evento) {
     const id = evento.target.dataset.item
-    let itemEncontrado= libros.find ((item)=>item.id==id)
-    let cantidadItemCompra= Number(prompt(`Indique la cantidad del libro seleccionado`))
-    let costoParcialItem = calcularCostoItem(itemEncontrado.precio, cantidadItemCompra)
-    //cantidadItemCompra= cantidadItem (libros[item-1].cantidad)
-    arrayItemCompra (itemEncontrado.nombre, itemEncontrado.precio, cantidadItemCompra, costoParcialItem,itemEncontrado.imagen)
-    cantItemCarro ()
-    mostrarItemsCarrito ()
+    let itemEncontrado = libros.find((item) => item.id == id)
+    let cantidadItemCompra = 1
+    arrayItemCompra(itemEncontrado.nombre, itemEncontrado.precio, cantidadItemCompra, itemEncontrado.imagen)
+    cantItemCarro()
+}
+//Funcion para aumentar la cantidad de un item
+function sumarCantidadItem(evento) {
+    const id = evento.target.dataset.item
+    let itemEncontrado = itemsCompra.find((itemCompra) => itemCompra.id == id)
+    let index = itemsCompra.indexOf(itemEncontrado)
+    itemsCompra[index].cantidad++
+    localStorage.setItem('Item__Compra', JSON.stringify(itemsCompra))
+    mostrarItemsCarrito()
+}
+//Funcion para disminuir la cantidad de un item
+function restarCantidadItem(evento) {
+    const id = evento.target.dataset.item
+    let itemEncontrado = itemsCompra.find((itemCompra) => itemCompra.id == id)
+    let index = itemsCompra.indexOf(itemEncontrado)
+    if (itemsCompra[index].cantidad !== 1) {
+        itemsCompra[index].cantidad--
+        localStorage.setItem('Item__Compra', JSON.stringify(itemsCompra))
+    }
+    mostrarItemsCarrito()
+
 }
 
-//Funcion que calcula el costo por item. Es llamada por funcion agregar item 
-function calcularCostoItem (precioItem, cantidadItem) {
-    return precioItem * cantidadItem 
+//Funcion para quitar items del carrito
+function quitarItem(evento) {
+    const id = evento.target.dataset.item
+    let itemEncontrado = itemsCompra.find((itemCompra) => itemCompra.id == id)
+    let index = itemsCompra.indexOf(itemEncontrado)
+    itemsCompra.splice(index, 1)
+    localStorage.setItem('Item__Compra', JSON.stringify(itemsCompra))
+    cantItemCarro()
+    mostrarItemsCarrito()
 }
 
-//Funcion que verifica la cantidad del libros disponibles (no esta en uso por el momento)
-function cantidadItem (cantidadDisponible) {
-    const cantidadElegida = Number(prompt(`Indique la cantidad del libro seleccionado`))
-    const stock = cantidadDisponible - cantidadElegida
-    if (cantidadDisponible === 0) {
-        alert("No hay disponibilidad de este item. Elija otra opcion");
-        return false
-    } else if (stock < 0) {
-        alert("Hay solo " + cantidadDisponible + " item/s disponible/s. Vuelva a intentar");
-        return false
-    } else {
-        return cantidadElegida
+//Funcion para a Buscar item
+function buscarItem() {
+    let itemBuscado = document.getElementById("itemBuscado")
+    let buscar = document.getElementById("buscar")
+    buscar.onclick = () => {
+        let resulBusqueda = libros.filter((parametro) => parametro.nombre.toLowerCase().includes(itemBuscado.value))
+        localStorage.setItem('Item__Encontrado', JSON.stringify(resulBusqueda))
+        mostrarBusqueda()
     }
 }
 
-//Funcion para quitar items del array de compra
-function quitarItem (evento){
-    const id = evento.target.dataset.item
-    let itemEncontrado= itemsCompra.find ((itemCompra)=>itemCompra.id==id)
-    let index= itemsCompra.indexOf (itemEncontrado)
-    itemsCompra.splice (index,1)
-    localStorage.setItem ('Item__Compra', JSON.stringify(itemsCompra))
-    cantItemCarro ()
-    mostrarItemsCarrito ()
-    console.log ("DETALLE LIBROS EN CARRITO")
-    itemsCompra.forEach ((itemCompra)=>console.log (itemCompra))
+//Funcion para Ver el carrito
+function verItemCarro() {
+    let ver = document.getElementById("ver")
+    ver.onclick = () => {
+        mostrarItemsCarrito()
+    }
 }
-
-//Funcion relacionada a Buscar item (no esta en uso)
-function buscarItem() {
-    let busqueda = prompt("Ingrese el nombre del libro a buscar")
-    let resulBusqueda = libros.filter((parametro) => parametro.nombre.toLowerCase().includes(busqueda))
-    console.log("RESULTADO BUSQUEDA")
-    resulBusqueda.forEach ((resultado)=>console.log (resultado.nombre))
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

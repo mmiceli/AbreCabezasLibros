@@ -24,20 +24,21 @@
                 </picture> 
                 <p>Abre Cabezas Libros</p>
             </div>
+            <div class="navbar__busqueda">
+                <input class="navbar__busqueda__campo" id="itemBuscado" type="search" placeholder="Buscar libro" aria-label="Search">
+                <button id="buscar">Buscar</button>
+            </div>
             <div class="navbar__carrito">
                 <p class="cantItem">0</p>
-                <picture class="navbar__carrito__img">
-                    <a href="assets/pages/carrito.html"><i class="fa-solid fa-cart-arrow-down"></i></a>          
-                </picture> 
+                <picture id="ver" class="navbar__carrito__img">
+                    <i class="fa-solid fa-cart-arrow-down"></i> 
+                </picture>
             </div>
         </section>
     </header>
     <main>
         <section class="principal container">
-            <h2 class="principal__titule">Libros destacados</h2>
-            <p class="principal__parrafo">“Uno no es lo que es por lo que escribe, sino por lo que ha leído”. Jorge Luis Borges.</p>
-            <div id="itemsDestacados" class="general">
-                <h3 class="general__titule">Novelas</h3>
+            <div id="items" class="general">
             </div>
         </section>
     </main>
