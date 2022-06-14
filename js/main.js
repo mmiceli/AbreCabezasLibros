@@ -69,7 +69,7 @@ function mostrarItemsDestacados() {
         nodoLI.appendChild(nodoPrecio)
 
         const nodoBoton = document.createElement("button")
-        nodoBoton.className = ""
+        nodoBoton.className = "general__subdiv1__item1__boton"
         nodoBoton.id = `${item.id}`
         nodoBoton.dataset.item = `${item.id}`
         nodoBoton.addEventListener('click', agregarItem)
@@ -138,7 +138,6 @@ function mostrarItemsCarrito() {
         nodoSpan.appendChild(nodoCantidad)
 
         const nodoBoton2 = document.createElement("button")
-        nodoBoton2.className = "general__subdiv2__item2__boton"
         nodoBoton2.id = `${item.id}`
         nodoBoton2.dataset.item = `${item.id}`
         nodoBoton2.addEventListener('click', sumarCantidadItem)
@@ -153,7 +152,7 @@ function mostrarItemsCarrito() {
         nodoLI.appendChild(nodoCosto)
 
         const nodoBoton = document.createElement("button")
-        nodoBoton.className = "general__subdiv2__item2__boton"
+        nodoBoton.className = "general__subdiv2__item2__boton2"
         nodoBoton.id = `${item.id}`
         nodoBoton.dataset.item = `${item.id}`
         nodoBoton.addEventListener('click', quitarItem)
@@ -267,7 +266,7 @@ function mostrarItemsEncontrados(itemsEncontrado) {
         nodoLI.appendChild(nodoGenero)
 
         const nodoBoton = document.createElement("button")
-        nodoBoton.className = "general__subdiv2__item2__boton"
+        nodoBoton.className = "general__subdiv2__item2__boton1"
         nodoBoton.id = `${item.id}`
         nodoBoton.dataset.item = `${item.id}`
         nodoBoton.addEventListener('click', agregarItem)

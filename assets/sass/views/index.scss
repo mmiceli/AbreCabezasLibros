@@ -20,7 +20,7 @@
     margin: 2rem;
 
     &__titule {
-        padding: 3rem 0;
+        padding: 2rem 0;
         font-size: 2em;
     }
 
@@ -34,13 +34,13 @@
     &__subdiv1 {
         @include flex (row, center, stretch);
         flex-wrap: wrap;
-        padding-bottom: 2rem;
+        padding-bottom: 4rem;
+        margin: 2rem;
         color: $color__cuarter; 
         
         &__item1 {
             flex-basis: 10%;
-            width: 20%;
-            margin: 4rem;
+            margin: 5rem 2rem;
             transition: all .3s ease-in-out;
 
             &:hover {
@@ -51,12 +51,26 @@
 
             &__img {
                 width: 100%;
-                height: 100%;    
+                height: 80%;    
             }
 
             &__precio {
                 margin: 1rem;
                 font-size: 1.5em;
+            }
+
+            &__boton {
+                background: $color__second;
+                border: none;
+                border-radius: 2rem;
+                padding: 0.8rem;
+                margin: 0rem 3rem;
+                color: $color__first;
+                &:hover {
+                    background-color: $color__first;
+                    border: solid 0.1rem $color__second;
+                    color: $color__second;
+                }
             }
         } 
     }
@@ -96,6 +110,34 @@
             }
             &__costoPrecio {
                 flex-basis: 15%;
+            }
+
+            &__boton1 {
+                background: $color__second;
+                border: none;
+                border-radius: 2rem;
+                padding: 0.8rem;
+                margin: 0rem 3rem;
+                color: $color__first;
+                &:hover {
+                    background-color: $color__first;
+                    border: solid 0.1rem $color__second;
+                    color: $color__second;
+                }
+            }
+
+            &__boton2 {
+                background-color: $color__first;
+                border: solid 0.1rem $color__second;
+                border-radius: 2rem; 
+                padding: 0.8rem;
+                margin: 0rem 3rem;
+                font-weight: 400;
+                color: $color__second;   
+                &:hover {
+                    background-color: $color__second;
+                    color: $color__first;
+                }
             }
 
 
