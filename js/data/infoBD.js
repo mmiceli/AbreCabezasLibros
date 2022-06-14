@@ -50,7 +50,7 @@ const data = [{
     precio: 1200,
     cantidad: 15,
     genero: "",
-    imagen:"https://mmiceli.github.io/AbreCabezasLibros/assets/image/books/Pokemon.jpg",
+    imagen:"https://mmiceli.github.io/AbreCabezasLibros/assets/image/books/pokemon.jpg",
     activoMenu: true,
 },
 {
