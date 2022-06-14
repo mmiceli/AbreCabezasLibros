@@ -2,7 +2,7 @@
 // Se podra: 
 // Agregar items al carrito 
 // Aumentar o disminuir la cantidad de un item hasta 1 en el carrito
-// Buscar items
+// Buscar items por nombre y genero
 // Quitar items del carrito.
 
 //FUNCIONES Y ARRAY PARA GUARDAR INFORMACION
@@ -86,6 +86,10 @@ function mostrarItemsDestacados() {
 }
 
 //Funcion para mostrar la seccion de items del carrito. 
+function mostrarCarrito () {
+    itemsCompra.length > 0 && mostrarItemsCarrito() //Uso de operador And
+    itemsCompra.length === 0 && mostrarCarritoVacio()
+}
 function mostrarItemsCarrito() {
     let nodoDivCarrito = document.getElementById("items")
 
@@ -170,6 +174,22 @@ function mostrarItemsCarrito() {
 
     nodoDivCarrito.appendChild(nodoUL)
 }
+function mostrarCarritoVacio() {
+    let nodoDivCarrito = document.getElementById("items")
+
+    if (!nodoDivCarrito) {
+        nodoDivCarrito = document.createElement("div")
+        nodoDivCarrito.setAttribute("id", "items")
+        nodoDivCarrito.className = "general"
+    }
+    nodoDivCarrito.innerHTML = ""
+
+    const nodoH3a = document.createElement("h3")
+    nodoH3a.className = "general__texto"
+    nodoH3a.innerHTML = "Tu carrito está vacío. Comenzá a llenarlo ahora."
+    nodoDivCarrito.appendChild(nodoH3a)
+}
+
 
 //Función para mostrar el costo de cada items en carrito. Es llamada por la funcion mostrarItemsCarrito
 function calcularCostoItem(precio, cantidad) {
@@ -181,7 +201,7 @@ function calcularCostoTotal(arrayItemCompra) {
     let array = arrayItemCompra
     let total = 0
     for (let i = 0; i < array.length; i++) {
-        total = total + (array[i].precio * array[i].cantidad)
+        total += (array[i].precio * array[i].cantidad)
     }
     return total
 }
@@ -204,7 +224,6 @@ function mostrarBusqueda() {
     itemsEncontrado.length > 0 && mostrarItemsEncontrados(itemsEncontrado) //Uso de operador And
     itemsEncontrado.length === 0 && mostrarNoEncontrado()
 }
-
 function mostrarItemsEncontrados(itemsEncontrado) {
     let nodoDivCarrito = document.getElementById("items")
 
@@ -259,7 +278,6 @@ function mostrarItemsEncontrados(itemsEncontrado) {
     });
     nodoDivCarrito.appendChild(nodoUL)
 }
-
 function mostrarNoEncontrado() {
     let nodoDivCarrito = document.getElementById("items")
 
@@ -271,7 +289,7 @@ function mostrarNoEncontrado() {
     nodoDivCarrito.innerHTML = ""
 
     const nodoH3 = document.createElement("h3")
-    nodoH3.className = "general__titule"
+    nodoH3.className = "general__texto"
     nodoH3.innerHTML = "No hay coincidencias con la busqueda"
     nodoDivCarrito.appendChild(nodoH3)
 }
@@ -284,7 +302,17 @@ function agregarItem(evento) {
     let cantidadItemCompra = 1
     arrayItemCompra(itemEncontrado.nombre, itemEncontrado.precio, cantidadItemCompra, itemEncontrado.imagen)
     cantItemCarro()
+    Toastify({
+        text: "Agregaste un item al carrito", 
+        duration: 3000,
+        gravity: 'top',
+        position: 'center',
+        style: {
+           background: 'linear-gradient(to right, #f30c0c, #d6a63f)',
+        },
+     }).showToast();
 }
+
 //Funcion para aumentar la cantidad de un item
 function sumarCantidadItem(evento) {
     const id = evento.target.dataset.item
@@ -292,7 +320,7 @@ function sumarCantidadItem(evento) {
     let index = itemsCompra.indexOf(itemEncontrado)
     itemsCompra[index].cantidad++
     localStorage.setItem('Item__Compra', JSON.stringify(itemsCompra))
-    mostrarItemsCarrito()
+    mostrarCarrito()
 }
 //Funcion para disminuir la cantidad de un item
 function restarCantidadItem(evento) {
@@ -303,7 +331,7 @@ function restarCantidadItem(evento) {
         itemsCompra[index].cantidad--
         localStorage.setItem('Item__Compra', JSON.stringify(itemsCompra))
     }
-    mostrarItemsCarrito()
+    mostrarCarrito()
 
 }
 
@@ -315,7 +343,16 @@ function quitarItem(evento) {
     itemsCompra.splice(index, 1)
     localStorage.setItem('Item__Compra', JSON.stringify(itemsCompra))
     cantItemCarro()
-    mostrarItemsCarrito()
+    mostrarCarrito()
+    Toastify({
+        text: "Eliminaste un item del carrito", 
+        duration: 3000,
+        gravity: 'top',
+        position: 'center',
+        style: {
+           background: 'linear-gradient(to right, #f30c0c, #d6a63f)',
+        },
+     }).showToast();
 }
 
 //Funcion para a Buscar item
@@ -323,7 +360,8 @@ function buscarItem() {
     let itemBuscado = document.getElementById("itemBuscado")
     let buscar = document.getElementById("buscar")
     buscar.onclick = () => {
-        let resulBusqueda = libros.filter((parametro) => parametro.nombre.toLowerCase().includes(itemBuscado.value))
+        let resulBusqueda = libros.filter((parametro) => parametro.nombre.toLowerCase().includes(itemBuscado.value) 
+        || parametro.genero.toLowerCase().includes(itemBuscado.value))
         localStorage.setItem('Item__Encontrado', JSON.stringify(resulBusqueda))
         mostrarBusqueda()
     }
@@ -333,6 +371,6 @@ function buscarItem() {
 function verItemCarro() {
     let ver = document.getElementById("ver")
     ver.onclick = () => {
-        mostrarItemsCarrito()
+        mostrarCarrito()
     }
 }
