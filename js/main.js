@@ -64,7 +64,7 @@ function mostrarItemsDestacados() {
         nodoLI.appendChild(nodoImagen)
 
         const nodoPrecio = document.createElement("p")
-        nodoPrecio.className = ""
+        nodoPrecio.className = "general__subdiv1__item1__precio"
         nodoPrecio.innerHTML = `$${item.precio}`
         nodoLI.appendChild(nodoPrecio)
 
@@ -308,7 +308,7 @@ function agregarItem(evento) {
         gravity: 'top',
         position: 'center',
         style: {
-           background: 'linear-gradient(to right, #f30c0c, #d6a63f)',
+           background: 'linear-gradient(to right, #f30c0c, #942e2e)',
         },
      }).showToast();
 }
@@ -350,7 +350,7 @@ function quitarItem(evento) {
         gravity: 'top',
         position: 'center',
         style: {
-           background: 'linear-gradient(to right, #f30c0c, #d6a63f)',
+           background: 'linear-gradient(to right, #f30c0c, #942e2e)',
         },
      }).showToast();
 }

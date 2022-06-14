@@ -38,8 +38,9 @@
         color: $color__cuarter; 
         
         &__item1 {
-            flex-basis: 15%;
-            margin: 3rem;
+            flex-basis: 10%;
+            width: 20%;
+            margin: 4rem;
             transition: all .3s ease-in-out;
 
             &:hover {
@@ -51,6 +52,11 @@
             &__img {
                 width: 100%;
                 height: 100%;    
+            }
+
+            &__precio {
+                margin: 1rem;
+                font-size: 1.5em;
             }
         } 
     }
