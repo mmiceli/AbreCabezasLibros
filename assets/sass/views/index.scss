@@ -46,7 +46,6 @@
             &:hover {
                 transform: scale(1.2,1.2);
                 padding: 0.3rem;
-                background-color: $color__first;
             }
 
             &__img {
@@ -101,8 +100,24 @@
             &__cantidad {
                 flex-basis: 15%;
                 @include flex (row, center, center);
+                padding: 0.5rem;
+                border-radius: 0.8rem;
+                border: solid 0.1rem rgb(203, 202, 202);
 
-                &__cantidad2 {
+                &__boton {
+                    background: $color__first;
+                    border: none;
+                    margin-right: 1rem;
+                    margin-left: 1rem;
+                    font-size: 1.1em;
+                    color: $color__third;
+                    &:hover {
+                        font-size: 1.3em; 
+                    }
+                }
+
+                &__numero {
+                    font-size: 0.8em;
                     margin-right: 1rem;
                     margin-left: 1rem;
                 }
@@ -144,6 +159,11 @@
             &__total {
                 padding-top: 2rem;
                 margin: 1rem;
+            }
+
+            &__genero {
+                flex-basis: 15%;
+                padding: 0.5rem;
             }
         }
     }

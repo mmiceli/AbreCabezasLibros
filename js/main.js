@@ -12,11 +12,13 @@ const libros = []
 cargarLibros()
 
 function cargarLibros() {
+
     data.forEach((dato) => {
         const libro = new ItemDisponible(dato.id, dato.nombre, dato.precio, dato.cantidad, dato.genero, dato.imagen)
         libros.push(libro)
     })
 }
+
 
 //Funciones y array destinados a guardar los items de la compra. 
 let itemsCompra = JSON.parse(localStorage.getItem("Item__Compra")) ? //Uso de operador Ternario
@@ -126,6 +128,7 @@ function mostrarItemsCarrito() {
         nodoSpan.className = "general__subdiv2__item2__cantidad"
 
         const nodoBoton1 = document.createElement("button")
+        nodoBoton1.className = "general__subdiv2__item2__cantidad__boton"
         nodoBoton1.id = `${item.id}`
         nodoBoton1.dataset.item = `${item.id}`
         nodoBoton1.addEventListener('click', restarCantidadItem)
@@ -133,11 +136,12 @@ function mostrarItemsCarrito() {
         nodoSpan.appendChild(nodoBoton1)
 
         const nodoCantidad = document.createElement("p")
-        nodoCantidad.className = "general__subdiv2__item2__cantidad__cantidad2"
+        nodoCantidad.className = "general__subdiv2__item2__cantidad__numero"
         nodoCantidad.innerHTML = `${item.cantidad}`
         nodoSpan.appendChild(nodoCantidad)
 
         const nodoBoton2 = document.createElement("button")
+        nodoBoton2.className = "general__subdiv2__item2__cantidad__boton"
         nodoBoton2.id = `${item.id}`
         nodoBoton2.dataset.item = `${item.id}`
         nodoBoton2.addEventListener('click', sumarCantidadItem)
@@ -261,7 +265,7 @@ function mostrarItemsEncontrados(itemsEncontrado) {
         nodoLI.appendChild(nodoPrecio)
 
         const nodoGenero = document.createElement("p")
-        nodoGenero.className = "general__subdiv2__item2__cantidad"
+        nodoGenero.className = "general__subdiv2__item2__genero"
         nodoGenero.innerHTML = `${item.genero || "Genero no cargado"}` //Acceso condicional
         nodoLI.appendChild(nodoGenero)
 
