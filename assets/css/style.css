@@ -364,6 +364,8 @@ footer {
     font-size: 0.8em; }
   header .navbar__busqueda {
     flex-basis: 75%; }
+  header .navbar__carrito {
+    margin-left: 0.8rem; }
   .general__subdiv2 {
     width: 95%; }
     .general__subdiv2__item2 {
@@ -385,4 +387,6 @@ footer {
       .general__subdiv2__item2__boton2 {
         flex-basis: 15%;
         margin: 0rem 0.5rem;
-        font-size: 1em; } }
+        font-size: 1em; }
+  .general__busqueda {
+    width: 90%; } }

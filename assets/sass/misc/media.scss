@@ -8,6 +8,10 @@
         flex-basis: 75%;
     }
 
+    header .navbar__carrito {
+        margin-left: 0.8rem ;
+    }
+
     .general__subdiv2 {
         width: 95%;
 
@@ -38,5 +42,9 @@
                 font-size: 1em;
             }
         }
+    }
+
+    .general__busqueda {
+        width: 90%;
     }
 }
