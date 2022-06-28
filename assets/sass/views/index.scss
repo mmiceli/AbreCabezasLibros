@@ -100,6 +100,7 @@
             &__cantidad {
                 flex-basis: 15%;
                 @include flex (row, center, center);
+                margin: 0.3rem;
                 padding: 0.5rem;
                 border-radius: 0.8rem;
                 border: solid 0.1rem rgb(203, 202, 202);
@@ -166,6 +167,40 @@
                 padding: 0.5rem;
             }
         }
+    }
+    &__busqueda {
+        @include flex (row, center, center);
+        width: 40%;
+        margin: 2rem;
+        border-radius: 0.8rem;
+        border: solid 0.2rem $color__third;
+        background-color: #942e2e1b;
+
+        &__campo {
+            flex-basis: 90%;
+            margin: 0rem 1rem;
+            padding: 0.6rem 0rem;
+            border: none;
+            outline:none;
+            background-color: #11ffee00;
+            color: $color__cuarter;
+        }
+        &__buscar {
+            font-size: 1.5em;
+            margin: 0.5rem;
+        }
+
+    }
+    &__mensajeBusqueda {
+        font-size: 1.5em;
+        color: $color__cuarter;
+        margin: 3rem;
+    }
+
+    &__itemBusquedaGoogle {
+        font-size: 1em;
+        color: $color__cuarter;
+        margin: 1rem;
     }
 
 }

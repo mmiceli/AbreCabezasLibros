@@ -14,7 +14,6 @@
     <script defer src="js/data/infoBD.js"></script>
     <script defer src="js/main.js"></script>
     <script defer src="js/vistas/index.js"></script>
-    <!--Defer carga el script despues de cargar el html-->
 </head>
 
 <body>
@@ -24,11 +23,16 @@
                 <picture class="navbar__logo__img">
                     <a href="index.html"><i class="fa-solid fa-book"></i></a>
                 </picture> 
-                <p>Abre Cabezas Libros</p>
+                <p class="navbar__logo__text">Abre Cabezas Libros</p>
             </div>
             <div class="navbar__busqueda">
-                <input class="navbar__busqueda__campo" id="itemBuscado" type="search" placeholder="Buscar por nombre o genero" aria-label="Search">
-                <button id="buscar">Buscar</button>
+                <div class="navbar__busqueda__local">
+                    <input class="navbar__busqueda__local__campo" id="itemBuscado" type="text" placeholder="Buscar por nombre o genero" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass navbar__busqueda__local__buscar" id="buscar"></i>
+                </div>
+                <div class="navbar__busqueda__google">
+                    <button class="navbar__busqueda__google__button" id="verGoogle">Buscar en Google Books</button>
+                </div>
             </div>
             <div class="navbar__carrito">
                 <p class="cantItem">0</p>
@@ -39,7 +43,7 @@
         </section>
     </header>
     <main>
-        <section class="principal container">
+        <section id="div2" class="principal container">
             <div id="items" class="general">
             </div>
         </section>

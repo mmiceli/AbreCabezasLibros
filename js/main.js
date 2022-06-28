@@ -6,7 +6,7 @@
 // Quitar items del carrito.
 
 //FUNCIONES Y ARRAY PARA GUARDAR INFORMACION
-//Funciones y array destinados a guardar los libros a mostrar en index
+//Funcion y array destinados a guardar los libros a mostrar en index
 const libros = []
 
 cargarLibros()
@@ -219,7 +219,7 @@ function cantItemCarro() {
     }
 }
 
-//Funciones para mostrar los resultados de la Busqueda. 
+//Funciones para mostrar los resultados de la Busqueda local
 function mostrarBusqueda() {
     let itemsEncontrado = JSON.parse(localStorage.getItem("Item__Encontrado")) ? //Uso de operador Ternario
         JSON.parse(localStorage.getItem("Item__Encontrado")) : [];
@@ -296,6 +296,85 @@ function mostrarNoEncontrado() {
     nodoH3.innerHTML = "No hay coincidencias con la busqueda"
     nodoDivCarrito.appendChild(nodoH3)
 }
+
+//Funcion para mostrar la opcion de buscar libros de google book
+function mostrarBusquedaGoogle () {
+    let nodoDivGoogle = document.getElementById("items")
+
+    if (!nodoDivGoogle) {
+        nodoDivGoogle = document.createElement("div")
+        nodoDivGoogle.setAttribute("id", "items")
+        nodoDivGoogle.className = "general"
+    }
+    nodoDivGoogle.innerHTML = ""
+
+    const nodoDivBusqueda = document.createElement("div")
+    nodoDivBusqueda.className = "general__busqueda" 
+    nodoDivGoogle.appendChild(nodoDivBusqueda)
+
+    const nodoInput = document.createElement("input")
+    nodoInput.className = "general__busqueda__campo" 
+    nodoInput.id = "itemBuscado2"
+    nodoInput.placeholder = "Buscar volumen en google book"
+    nodoDivBusqueda.appendChild(nodoInput)
+
+    const nodoI = document.createElement("i")
+    nodoI.className="fa-solid fa-magnifying-glass general__busqueda__buscar"
+    nodoI.id = "buscar2"
+    nodoI.addEventListener('click', buscarGoogle)
+    nodoDivBusqueda.appendChild(nodoI)
+
+    let nodoDivItems = document.createElement("div")
+    nodoDivItems.className = "general__mensajeBusqueda" 
+    nodoDivItems.id = "idItemsGoogle"
+    nodoDivItems.innerHTML = "No hay elementos de google books. Inicie la busqueda ahora."
+    nodoDivGoogle.appendChild(nodoDivItems)
+
+}
+
+//Funcion para mostrar los libros de google encontrados
+function mostrarDatos(data) {
+    let nodoDivGoogleItem = document.getElementById("idItemsGoogle")
+    nodoDivGoogleItem.innerHTML=""
+    data.items.forEach(item => {
+        let divItemBuscado = document.createElement("div");
+        divItemBuscado.className= "general__itemBusquedaGoogle"
+
+        if (item.volumeInfo.hasOwnProperty("imageLinks")) {
+            let nodoImg= document.createElement("img");
+            nodoImg.src= `${item.volumeInfo.imageLinks.smallThumbnail}`;
+            divItemBuscado.appendChild(nodoImg);
+
+        }
+        else {
+            let nodoP= document.createElement("p");
+            nodoP.innerHTML ="Imagen no disponible";
+            divItemBuscado.appendChild(nodoP);
+        }
+
+        const nodoBr1= document.createElement("br");
+        divItemBuscado.appendChild(nodoBr1);
+
+        const nodoP2= document.createElement("p");
+        nodoP2.innerHTML = `Titulo: ${item.volumeInfo.title}`;
+        divItemBuscado.appendChild(nodoP2);
+
+        const nodoBr2= document.createElement("br");
+        divItemBuscado.appendChild(nodoBr2);
+        
+        const nodoP3= document.createElement("p");
+        nodoP3.innerHTML = `Detalle: ${item.volumeInfo.subtitle || "No especificado"}`;
+        divItemBuscado.appendChild(nodoP3);
+
+        const nodoBr3= document.createElement("br");
+        divItemBuscado.appendChild(nodoBr3);
+
+        const nodoHr= document.createElement("hr");
+        divItemBuscado.appendChild(nodoHr);
+                           
+        nodoDivGoogleItem.appendChild(divItemBuscado);
+    })
+ }
 
 //FUNCIONES DISPARADAS POR EVENTOS O DE SOPORTE A ESTAS
 //Funcion para agregar item en el carrito
@@ -377,3 +456,23 @@ function verItemCarro() {
         mostrarCarrito()
     }
 }
+
+//Funcion para Ver opcion de busqueda de Google Book
+function verBusquedaGoogle () {
+    let ver = document.getElementById("verGoogle")
+    verGoogle.onclick = () => {
+        mostrarBusquedaGoogle ()
+    }
+}
+
+//Funcion para buscar volumnes en Google Book
+//Informacion Api en https://developers.google.com/books/docs/v1/using
+function buscarGoogle() {
+    let itemBuscado = document.getElementById("itemBuscado2")
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${itemBuscado.value}+intitle:keyes&key=AIzaSyBBGGQFcZT6Cner0ypItpvs3fW1moW1HeI`)
+         .then((response) => response.json())
+         .then((json) => {
+             console.log (json)
+             mostrarDatos(json)})
+         .catch(() => alert("intente de nuevo"))
+ }
