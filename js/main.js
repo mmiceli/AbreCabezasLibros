@@ -1,9 +1,10 @@
-// APP PARA COMPRAR LIBROS
+// TIENDA ONLINE DE LIBROS
 // Se podra: 
-// Agregar items al carrito 
-// Aumentar o disminuir la cantidad de un item hasta 1 en el carrito
-// Buscar items por nombre y genero
+// Agregar items al carrito. 
+// Aumentar o disminuir la cantidad de un item en el carrito.
+// Buscar items por nombre y genero en forma local.
 // Quitar items del carrito.
+// Buscar volumenes en google books.
 
 //FUNCIONES Y ARRAY PARA GUARDAR INFORMACION
 //Funcion y array destinados a guardar los libros a mostrar en index
@@ -88,10 +89,11 @@ function mostrarItemsDestacados() {
 }
 
 //Funcion para mostrar la seccion de items del carrito. 
-function mostrarCarrito () {
+function mostrarCarrito() {
     itemsCompra.length > 0 && mostrarItemsCarrito() //Uso de operador And
     itemsCompra.length === 0 && mostrarCarritoVacio()
 }
+
 function mostrarItemsCarrito() {
     let nodoDivCarrito = document.getElementById("items")
 
@@ -177,6 +179,7 @@ function mostrarItemsCarrito() {
 
     nodoDivCarrito.appendChild(nodoUL)
 }
+
 function mostrarCarritoVacio() {
     let nodoDivCarrito = document.getElementById("items")
 
@@ -227,6 +230,7 @@ function mostrarBusqueda() {
     itemsEncontrado.length > 0 && mostrarItemsEncontrados(itemsEncontrado) //Uso de operador And
     itemsEncontrado.length === 0 && mostrarNoEncontrado()
 }
+
 function mostrarItemsEncontrados(itemsEncontrado) {
     let nodoDivCarrito = document.getElementById("items")
 
@@ -281,6 +285,7 @@ function mostrarItemsEncontrados(itemsEncontrado) {
     });
     nodoDivCarrito.appendChild(nodoUL)
 }
+
 function mostrarNoEncontrado() {
     let nodoDivCarrito = document.getElementById("items")
 
@@ -297,8 +302,8 @@ function mostrarNoEncontrado() {
     nodoDivCarrito.appendChild(nodoH3)
 }
 
-//Funcion para mostrar la opcion de buscar libros de google book
-function mostrarBusquedaGoogle () {
+//Funcion para mostrar la opcion de buscar volumenes de google book
+function mostrarBusquedaGoogle() {
     let nodoDivGoogle = document.getElementById("items")
 
     if (!nodoDivGoogle) {
@@ -309,72 +314,71 @@ function mostrarBusquedaGoogle () {
     nodoDivGoogle.innerHTML = ""
 
     const nodoDivBusqueda = document.createElement("div")
-    nodoDivBusqueda.className = "general__busqueda" 
+    nodoDivBusqueda.className = "general__busqueda"
     nodoDivGoogle.appendChild(nodoDivBusqueda)
 
     const nodoInput = document.createElement("input")
-    nodoInput.className = "general__busqueda__campo" 
+    nodoInput.className = "general__busqueda__campo"
     nodoInput.id = "itemBuscado2"
     nodoInput.placeholder = "Buscar volumen en google book"
     nodoDivBusqueda.appendChild(nodoInput)
 
     const nodoI = document.createElement("i")
-    nodoI.className="fa-solid fa-magnifying-glass general__busqueda__buscar"
+    nodoI.className = "fa-solid fa-magnifying-glass general__busqueda__buscar"
     nodoI.id = "buscar2"
     nodoI.addEventListener('click', buscarGoogle)
     nodoDivBusqueda.appendChild(nodoI)
 
     let nodoDivItems = document.createElement("div")
-    nodoDivItems.className = "general__mensajeBusqueda" 
+    nodoDivItems.className = "general__mensajeBusqueda"
     nodoDivItems.id = "idItemsGoogle"
     nodoDivItems.innerHTML = "No hay elementos de google books. Inicie la busqueda ahora."
     nodoDivGoogle.appendChild(nodoDivItems)
 
 }
 
-//Funcion para mostrar los libros de google encontrados
+//Funcion para mostrar los volumenes de google encontrados
 function mostrarDatos(data) {
     let nodoDivGoogleItem = document.getElementById("idItemsGoogle")
-    nodoDivGoogleItem.innerHTML=""
+    nodoDivGoogleItem.innerHTML = ""
     data.items.forEach(item => {
         let divItemBuscado = document.createElement("div");
-        divItemBuscado.className= "general__itemBusquedaGoogle"
+        divItemBuscado.className = "general__itemBusquedaGoogle"
 
         if (item.volumeInfo.hasOwnProperty("imageLinks")) {
-            let nodoImg= document.createElement("img");
-            nodoImg.src= `${item.volumeInfo.imageLinks.smallThumbnail}`;
+            let nodoImg = document.createElement("img");
+            nodoImg.src = `${item.volumeInfo.imageLinks.smallThumbnail}`;
             divItemBuscado.appendChild(nodoImg);
 
-        }
-        else {
-            let nodoP= document.createElement("p");
-            nodoP.innerHTML ="Imagen no disponible";
+        } else {
+            let nodoP = document.createElement("p");
+            nodoP.innerHTML = "Imagen no disponible";
             divItemBuscado.appendChild(nodoP);
         }
 
-        const nodoBr1= document.createElement("br");
+        const nodoBr1 = document.createElement("br");
         divItemBuscado.appendChild(nodoBr1);
 
-        const nodoP2= document.createElement("p");
+        const nodoP2 = document.createElement("p");
         nodoP2.innerHTML = `Titulo: ${item.volumeInfo.title}`;
         divItemBuscado.appendChild(nodoP2);
 
-        const nodoBr2= document.createElement("br");
+        const nodoBr2 = document.createElement("br");
         divItemBuscado.appendChild(nodoBr2);
-        
-        const nodoP3= document.createElement("p");
+
+        const nodoP3 = document.createElement("p");
         nodoP3.innerHTML = `Detalle: ${item.volumeInfo.subtitle || "No especificado"}`;
         divItemBuscado.appendChild(nodoP3);
 
-        const nodoBr3= document.createElement("br");
+        const nodoBr3 = document.createElement("br");
         divItemBuscado.appendChild(nodoBr3);
 
-        const nodoHr= document.createElement("hr");
+        const nodoHr = document.createElement("hr");
         divItemBuscado.appendChild(nodoHr);
-                           
+
         nodoDivGoogleItem.appendChild(divItemBuscado);
     })
- }
+}
 
 //FUNCIONES DISPARADAS POR EVENTOS O DE SOPORTE A ESTAS
 //Funcion para agregar item en el carrito
@@ -385,14 +389,14 @@ function agregarItem(evento) {
     arrayItemCompra(itemEncontrado.nombre, itemEncontrado.precio, cantidadItemCompra, itemEncontrado.imagen)
     cantItemCarro()
     Toastify({
-        text: "Agregaste un item al carrito", 
+        text: "Agregaste un item al carrito",
         duration: 3000,
         gravity: 'top',
         position: 'center',
         style: {
-           background: 'linear-gradient(to right, #f30c0c, #942e2e)',
+            background: 'linear-gradient(to right, #f30c0c, #942e2e)',
         },
-     }).showToast();
+    }).showToast();
 }
 
 //Funcion para aumentar la cantidad de un item
@@ -427,14 +431,14 @@ function quitarItem(evento) {
     cantItemCarro()
     mostrarCarrito()
     Toastify({
-        text: "Eliminaste un item del carrito", 
+        text: "Eliminaste un item del carrito",
         duration: 3000,
         gravity: 'top',
         position: 'center',
         style: {
-           background: 'linear-gradient(to right, #f30c0c, #942e2e)',
+            background: 'linear-gradient(to right, #f30c0c, #942e2e)',
         },
-     }).showToast();
+    }).showToast();
 }
 
 //Funcion para a Buscar item
@@ -442,8 +446,8 @@ function buscarItem() {
     let itemBuscado = document.getElementById("itemBuscado")
     let buscar = document.getElementById("buscar")
     buscar.onclick = () => {
-        let resulBusqueda = libros.filter((parametro) => parametro.nombre.toLowerCase().includes(itemBuscado.value) 
-        || parametro.genero.toLowerCase().includes(itemBuscado.value))
+        let resulBusqueda = libros.filter((parametro) => parametro.nombre.toLowerCase().includes(itemBuscado.value) ||
+            parametro.genero.toLowerCase().includes(itemBuscado.value))
         localStorage.setItem('Item__Encontrado', JSON.stringify(resulBusqueda))
         mostrarBusqueda()
     }
@@ -458,10 +462,10 @@ function verItemCarro() {
 }
 
 //Funcion para Ver opcion de busqueda de Google Book
-function verBusquedaGoogle () {
+function verBusquedaGoogle() {
     let ver = document.getElementById("verGoogle")
     verGoogle.onclick = () => {
-        mostrarBusquedaGoogle ()
+        mostrarBusquedaGoogle()
     }
 }
 
@@ -470,9 +474,10 @@ function verBusquedaGoogle () {
 function buscarGoogle() {
     let itemBuscado = document.getElementById("itemBuscado2")
     fetch(`https://www.googleapis.com/books/v1/volumes?q=${itemBuscado.value}+intitle:keyes&key=AIzaSyBBGGQFcZT6Cner0ypItpvs3fW1moW1HeI`)
-         .then((response) => response.json())
-         .then((json) => {
-             console.log (json)
-             mostrarDatos(json)})
-         .catch(() => alert("intente de nuevo"))
- }
+        .then((response) => response.json())
+        .then((json) => {
+            console.log(json)
+            mostrarDatos(json)
+        })
+        .catch(() => alert("intente de nuevo"))
+}

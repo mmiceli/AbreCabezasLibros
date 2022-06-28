@@ -1,24 +1,27 @@
 /*Media Queries*/
-@media screen and (max-width: 540px)   { 
+@media screen and (max-width: 540px) {
     header .navbar__logo__text {
         font-size: 0.8em;
     }
+
     header .navbar__busqueda {
         flex-basis: 75%;
     }
 
     .general__subdiv2 {
         width: 95%;
+
         &__item2 {
             @include flex (row, stretch, center);
             font-size: 1em;
             padding: 0.5rem;
-            
+
             &__cantidad {
                 flex-wrap: wrap;
                 margin: 0.5rem;
-                
+
             }
+
             &__costoPrecio {
                 flex-basis: 15%;
             }
@@ -32,8 +35,8 @@
             &__boton2 {
                 flex-basis: 15%;
                 margin: 0rem 0.5rem;
-                font-size: 1em; 
+                font-size: 1em;
             }
         }
-    }    
+    }
 }

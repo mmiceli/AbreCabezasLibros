@@ -1,8 +1,8 @@
 /*Header and Navbar*/
 header {
     border-bottom: solid 0.3rem #f0e6e6;
-    min-height: 10vh; 
-    
+    min-height: 10vh;
+
     .navbar {
         @include flex (row, space-between, center);
 
@@ -14,11 +14,18 @@ header {
             &__img {
                 margin: 0.3rem 1rem;
                 font-size: 2.2em;
+                transition: all .3s ease-in-out;
+
+                &:hover {
+                    transform: scale(1.1, 1.1);
+                }
             }
+
             &__text {
                 font-size: 1em;
             }
         }
+
         &__busqueda {
             @include flex (column, center, center);
             flex-basis: 60%;
@@ -36,13 +43,15 @@ header {
                     margin: 0rem 1rem;
                     padding: 0.8rem 0rem;
                     border: none;
-                    outline:none;
+                    outline: none;
                 }
+
                 &__buscar {
                     font-size: 1.5em;
                     margin: 0.2rem 0.5rem;
                 }
             }
+
             &__google {
                 @include flex (row, center, center);
 
@@ -53,13 +62,14 @@ header {
                     padding: 0.5rem;
                     margin: 0.3rem;
                     color: $color__third;
+
                     &:hover {
                         background-color: $color__third;
                         border: none;
                         color: $color__first;
                     }
                 }
-                
+
             }
         }
 
@@ -67,15 +77,20 @@ header {
             @include flex (column, space-between, center);
             font-size: 1.5em;
             margin: 0.3rem 0.5rem;
+            transition: all .3s ease-in-out;
+
+            &:hover {
+                transform: scale(1.1, 1.1);
+            }
 
             &__img {
                 font-size: 2.2em;
             }
         }
     }
+
     .navbar2 {
         @include flex (row, center, center);
         margin: 0.3rem;
     }
 }
-

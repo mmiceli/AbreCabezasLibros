@@ -1,7 +1,7 @@
 /*Main general*/
 main {
-    background-image:url();
-    background-position: center;  
+    background-image: url();
+    background-position: center;
     background-repeat: no-repeat;
 
     .principal {
@@ -12,8 +12,9 @@ main {
         &__titule {
             color: $color__third;
             padding: 1rem;
-            margin: 0 2rem; 
+            margin: 0 2rem;
         }
+
         &__parrafo {
             color: $color__cuarter;
             font-size: 2em;
